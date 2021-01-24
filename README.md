@@ -7,12 +7,12 @@
 ```
 sudo npm install truffle@4.1.17 -g
 ```
-# Requirements
+## Node
 ```
 Node >= 7.6
 ```
 
-# truffle-hdwallet
+## truffle-hdwallet
 ```
 $ npm install truffle-hdwallet-provider@1.0.2
 ```
