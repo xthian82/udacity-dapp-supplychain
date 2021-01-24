@@ -1,3 +1,5 @@
+//var Web3 = require("web3");
+
 App = {
     web3Provider: null,
     contracts: {},
@@ -75,7 +77,6 @@ App = {
         // If no injected web3 instance is detected, fall back to Ganache
         else {
             App.web3Provider = new Web3.providers.HttpProvider('HTTP://127.0.0.1:7545');
-            // App.web3Provider = new Web3.providers.WebsocketProvider('ws://localhost:8545', {timeout: 100});
         }
 
         App.getMetaskAccountID();
