@@ -28,10 +28,5 @@ $ npm install truffle-hdwallet-provider@1.0.2
 v0.4.26
 ```
 
-## web3
-```
-1.0.0-beta.37
-```
-
 ## Rinkeby Network Token Address
 `0xeD214e478e4ed7746f4cA25b4f1A9BbA02D8fE98`
