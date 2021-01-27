@@ -4,13 +4,14 @@ import "../coffeeaccesscontrol/ConsumerRole.sol";
 import "../coffeeaccesscontrol/RetailerRole.sol";
 import "../coffeeaccesscontrol/DistributorRole.sol";
 import "../coffeeaccesscontrol/FarmerRole.sol";
+import "../coffeecore/Ownable.sol";
 
 
 // Define a contract 'Supplychain'
-contract SupplyChain is ConsumerRole, DistributorRole, FarmerRole, RetailerRole {
+contract SupplyChain is ConsumerRole, DistributorRole, FarmerRole, RetailerRole, Ownable {
 
   // Define 'owner'
-  address owner;
+  // address ownerItem;
 
   // Define a variable called 'upc' for Universal Product Code (UPC)
   //uint  upc;
@@ -70,10 +71,10 @@ contract SupplyChain is ConsumerRole, DistributorRole, FarmerRole, RetailerRole 
   event Purchased(uint upc);
 
   // Define a modifer that checks to see if msg.sender == owner of the contract
-  modifier onlyOwner() {
-    require(msg.sender == owner);
-    _;
-  }
+  //modifier onlyOwner() {
+  //  require(msg.sender == ownerItem);
+  //  _;
+  //}
 
   // Define a modifer that verifies the Caller
   modifier verifyCaller (address _address) {
@@ -148,15 +149,15 @@ contract SupplyChain is ConsumerRole, DistributorRole, FarmerRole, RetailerRole 
   // and set 'sku' to 1
   // and set 'upc' to 1
   constructor() public payable {
-    owner = msg.sender;
+    // ownerItem = msg.sender;
     sku = 1;
     //upc = 1;
   }
 
   // Define a function 'kill' if required
   function kill() public {
-    if (msg.sender == owner) {
-      selfdestruct(owner);
+    if (msg.sender == owner()) {
+      selfdestruct(owner());
     }
   }
 
@@ -196,9 +197,9 @@ contract SupplyChain is ConsumerRole, DistributorRole, FarmerRole, RetailerRole 
     // Call modifier to check if upc has passed previous supply chain stage
     harvested(_upc)
     // Call modifier to verify caller of this function
-   verifyCaller(items[_upc].originFarmerID)
-   onlyFarmer
-   public
+    verifyCaller(items[_upc].originFarmerID)
+    onlyFarmer
+    public
   {
     // Update the appropriate fields
     items[_upc].itemState = State.Processed;
